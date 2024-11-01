@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import { HoverEffect } from "@/components/ui/card-hover-effect"; // Import HoverEffect directly for use
+import { HoverEffect } from "@/components/ui/card-hover-effect";
 import Image from "next/image";
 
 // Data for project cards
@@ -22,7 +22,7 @@ const projects = [
   {
     title: "Collaborative Workspace",
     description:
-      "Real-time collaboration that allows multiple users to create, edit, and interact on the same canvas ",
+      "Real-time collaboration that allows multiple users to create, edit, and interact on the same canvas",
     link: " ",
   },
   {
@@ -30,7 +30,8 @@ const projects = [
     description:
       "A collection of pre-made templates, guides, and examples to inspire users and jump-start their creative process.",
     link: " ",
-  },{
+  },
+  {
     title: "Blogs",
     description:
       "A collection of articles, tutorials, and resources to help users learn, grow, and stay inspired.",
@@ -42,7 +43,6 @@ const projects = [
       "A place where users can share, discuss, and collaborate on projects, ideas, and more.",
     link: " ",
   },
-  
 ];
 
 // Component for displaying the project cards with hover effects
@@ -56,17 +56,42 @@ function CardHoverEffectDemo() {
 
 // Main Home Component
 export default function Home() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle("dark", !isDarkMode);
+  };
+
+  useEffect(() => {
+    // Set the initial theme based on the user's system preference
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setIsDarkMode(prefersDark);
+    document.documentElement.classList.toggle("dark", prefersDark);
+  }, []);
+
   return (
     <div className="flex flex-col overflow-hidden">
+      {/* Sticky Dark/Light Mode Toggle Button */}
+      <button
+        onClick={toggleDarkMode}
+        className="fixed top-4 right-4 bg-gray-800 dark:bg-gray-200 text-white dark:text-black rounded-xl p-2 shadow-md z-50"
+        aria-label="Toggle Dark Mode"
+      >
+        {isDarkMode ? "Light Mode" : "Dark Mode"}
+      </button>
+
       <ContainerScroll
         titleComponent={
           <>
-           <h1 className="text-4xl font-semibold text-black dark:text-white">
-              Welcome to the world of 
-              <br /></h1>
             <h1 className="text-4xl font-semibold text-black dark:text-white">
-              Short for Melody indicating in syntax and usability
+              Welcome to the world of
               <br />
+            </h1>
+            <h1 className="text-4xl font-semibold text-black dark:text-white">
+              {/* Short for Melody indicating in syntax and usability
+              <br /> */}
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
                 Melo
               </span>
@@ -87,14 +112,16 @@ export default function Home() {
           draggable={false}
         />
       </ContainerScroll>
-      <h1 className="text-4xl md:text-[6rem] font-bold mt-1 leading-none text-center">What We Offer !!!</h1>
+      <h1 className="text-4xl md:text-[6rem] font-bold mt-1 leading-none text-center">
+        What We Offer !!!
+      </h1>
       {/* Add the CardHoverEffectDemo component here */}
       <CardHoverEffectDemo />
 
       <div className="flex justify-center mt-8">
         <h1> Designed by Shivam</h1>
-        </div>
-     <br />
+      </div>
+      <br />
     </div>
   );
 }
