@@ -2,7 +2,7 @@
 FROM node:16 AS builder
 
 # Install dependencies
-RUN npm install 
+RUN npm install --force
 
 # Expose the port that the application runs on
 EXPOSE 3000

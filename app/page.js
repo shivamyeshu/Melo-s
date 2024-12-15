@@ -86,7 +86,8 @@ export default function Home() {
         titleComponent={
           <>
             <h1 className="text-4xl font-semibold text-black dark:text-white">
-              Welcome to the world of
+              {/* Welcome to the world of */}
+              This project is under development and will be available soon
               <br />
             </h1>
             <h1 className="text-4xl font-semibold text-black dark:text-white">
@@ -96,7 +97,8 @@ export default function Home() {
                 Melo
               </span>
               <div className="flex justify-center mt-4">
-                <Button className="px-6 py-3 text-lg">Getting Started</Button>
+                {/* <Button className="px-6 py-3 text-lg">Getting Started</Button> */}
+                {/* <Button className="colors:bg-red-500 px-6 py-3 text-lg">Developer will provide this functionality soon</Button> */}
               </div>
               <br />
             </h1>
